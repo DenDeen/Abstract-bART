@@ -26,7 +26,17 @@
         <a href="style-transfer">Neural Style Transfer</a>
         <input type="text" placeholder="Search..">
     </div>
-    <input type="file" name="poster" accept="image/png, image/jpeg">
+    <form action="{{ url_for('style_transfer') }}" enctype="multipart/form-data" method="POST">
+        <input label="image" name="img" type="file" />
+        <input type="submit" />
+    </form>
+    
+    {% if img %}
+    <h1>Rendered Image</h1>
+    <img alt="image" src="{{img}}">
+    {% else %}
+    <h1>Image will be render here...</h1>
+    {% endif %}
 
     <!-- <p>Current subreddit: {{subreddit}}</p> -->
 </body>
