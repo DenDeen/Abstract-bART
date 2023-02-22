@@ -2,6 +2,7 @@ from utils import *
 from urllib import response
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
+from neural_style import * 
 import os
 import requests
 import json
@@ -14,8 +15,11 @@ driv = artworks_app.create_driver()
 # print(driv.run("MATCH (n) RETURN n LIMIT 25"))
 
 upload_folder = os.path.join('static', 'uploads')
+neural_folder = os.path.join('static', 'neural')
 
 app.config['UPLOAD'] = upload_folder
+app.config['NEURAL'] = neural_folder
+
 
 @app.route("/") 
 def index():
@@ -38,8 +42,22 @@ def style_transfer():
         file = request.files['img']
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD'], filename))
-        img = os.path.join(app.config['UPLOAD'], filename)
-        return render_template('style-transfer.html', img=img)
+        img_path = os.path.join(app.config['UPLOAD'], filename)
+        neural_transfer(img_path)
+        neural = os.path.join(app.config['NEURAL'],'example.png')
+        return render_template('style-transfer.html', img=neural)
     return render_template('style-transfer.html')
+
+@app.route('/classifier', methods=['GET', 'POST'])
+def classifier():
+    if request.method == 'POST':
+        file = request.files['img']
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD'], filename))
+        img_path = os.path.join(app.config['UPLOAD'], filename)
+        neural_transfer(img_path)
+        neural = os.path.join(app.config['NEURAL'],'example.png')
+        return render_template('classifier.html', img=neural)
+    return render_template('classifier.html')
 
 app.run(host="0.0.0.0", port=80, debug=True)

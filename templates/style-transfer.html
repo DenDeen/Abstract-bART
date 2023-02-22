@@ -22,12 +22,14 @@
 
     <div class="topnav">
         <a class="active" href="/">Home</a>
-        <a href="#about">Search</a>
+        <a href="search">Search</a>
         <a href="style-transfer">Neural Style Transfer</a>
+        <a href="classifier">Classifier</a>
         <input type="text" placeholder="Search..">
     </div>
+
     <form action="{{ url_for('style_transfer') }}" enctype="multipart/form-data" method="POST">
-        <input label="image" name="img" type="file" />
+        <label for="image">Upload Image</label> <input id="image" name="img" type="file" />
         <input type="submit" />
     </form>
     

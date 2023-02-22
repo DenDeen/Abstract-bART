@@ -1,0 +1,46 @@
+<html lang="EN">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="url=http://127.0.0.1:5000/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href='static/style.css' />
+
+</head>
+
+<body>
+    <div class="heading">
+        <h1>The famous paintings</h1>
+    </div>
+    <div class="subheading">
+        <p>Here is the artwork you looked for</p>
+    </div>
+
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="search">Search</a>
+        <a href="style-transfer">Neural Style Transfer</a>
+        <a href="classifier">Classifier</a>
+        <input type="text" placeholder="Search..">
+    </div>
+
+    <form action="{{ url_for('style_transfer') }}" enctype="multipart/form-data" method="POST">
+        <label for="image">Upload Image</label> <input id="image" name="img" type="file" />
+        <input type="submit" />
+    </form>
+
+    {% if img %}
+    <h1>Rendered Image</h1>
+    <img alt="image" src="{{img}}">
+    {% else %}
+    <h1>Image will be render here...</h1>
+    {% endif %}
+
+    <!-- <p>Current subreddit: {{subreddit}}</p> -->
+</body>
+
+</html>
