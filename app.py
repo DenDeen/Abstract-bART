@@ -40,11 +40,15 @@ def index():
 @app.route('/style-transfer', methods=['GET', 'POST'])
 def style_transfer():
     if request.method == 'POST':
-        file = request.files['img']
+        file = request.files['contimg']
+        file2 = request.files['styimg']
         filename = secure_filename(file.filename)
+        filename2 = secure_filename(file2.filename)
         file.save(os.path.join(app.config['UPLOAD'], filename))
+        file2.save(os.path.join(app.config['UPLOAD'], filename2))
         img_path = os.path.join(app.config['UPLOAD'], filename)
-        neural_transfer(img_path)
+        style_path = os.path.join(app.config['UPLOAD'], filename2)
+        neural_transfer(img_path,style_path)
         neural = os.path.join(app.config['NEURAL'],'example.png')
         return render_template('style-transfer.html', img=neural)
     return render_template('style-transfer.html')

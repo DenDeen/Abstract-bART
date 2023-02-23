@@ -22,10 +22,8 @@
 
     <div class="topnav">
         <a href="/">Home</a>
-        <a href="search">Search</a>
         <a href="style-transfer">Neural Style Transfer</a>
         <a class="active" href="classifier">Classifier</a>
-        <input type="text" placeholder="Search..">
     </div>
 
     <form action="{{ url_for('classifier') }}" enctype="multipart/form-data" method="POST">
