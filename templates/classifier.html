@@ -14,33 +14,36 @@
 
 <body>
     <div class="heading">
-        <h1>The famous paintings</h1>
+        <h1>The Lab Rats</h1>
     </div>
     <div class="subheading">
-        <p>Here is the artwork you looked for</p>
+        <p>Website for KU Leuven Datathon'23</p>
     </div>
 
     <div class="topnav">
-        <a class="active" href="/">Home</a>
+        <a href="/">Home</a>
         <a href="search">Search</a>
         <a href="style-transfer">Neural Style Transfer</a>
-        <a href="classifier">Classifier</a>
+        <a class="active" href="classifier">Classifier</a>
         <input type="text" placeholder="Search..">
     </div>
 
-    <form action="{{ url_for('style_transfer') }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ url_for('classifier') }}" enctype="multipart/form-data" method="POST">
         <label for="image">Upload Image</label> <input id="image" name="img" type="file" />
         <input type="submit" />
     </form>
 
     {% if img %}
-    <h1>Rendered Image</h1>
+    <h1>Inputted Image</h1>
     <img alt="image" src="{{img}}">
     {% else %}
-    <h1>Image will be render here...</h1>
+    <h1>Image will be rendered here...</h1>
     {% endif %}
 
-    <!-- <p>Current subreddit: {{subreddit}}</p> -->
+    {% if text %}
+    <h1>Inputted Image is {{text}}</h1>
+    {% endif %}
+
 </body>
 
 </html>

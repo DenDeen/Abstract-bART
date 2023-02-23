@@ -6,6 +6,7 @@ from neural_style import *
 import os
 import requests
 import json
+from classifier import *
 
 app = Flask(__name__)
 
@@ -31,9 +32,9 @@ def index():
     image = driv.run(query).to_data_frame()
     return render_template('index.html', image=image['n.image_url'][0])
 
-@app.route('/search')
-def search():
-    return None
+# @app.route('/search')
+# def search():
+#     return None
 
 
 @app.route('/style-transfer', methods=['GET', 'POST'])
@@ -55,9 +56,8 @@ def classifier():
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD'], filename))
         img_path = os.path.join(app.config['UPLOAD'], filename)
-        neural_transfer(img_path)
-        neural = os.path.join(app.config['NEURAL'],'example.png')
-        return render_template('classifier.html', img=neural)
+        result = classifier_image(img_path)
+        return render_template('classifier.html', text = result,img=img_path)
     return render_template('classifier.html')
 
 app.run(host="0.0.0.0", port=80, debug=True)

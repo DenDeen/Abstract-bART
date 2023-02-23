@@ -13,9 +13,9 @@ mpl.rcParams['axes.grid'] = False
 import numpy as np
 import PIL.Image
 
-def neural_transfer(content_path):
+def neural_transfer(content_path, style_path):
     # content_path = tf.keras.utils.get_file('YellowLabradorLooking_new.jpg', 'https://storage.googleapis.com/download.tensorflow.org/example_images/YellowLabradorLooking_new.jpg')
-    style_path = tf.keras.utils.get_file('kandinsky5.jpg','https://storage.googleapis.com/download.tensorflow.org/example_images/Vassily_Kandinsky%2C_1913_-_Composition_7.jpg')
+    # style_path = tf.keras.utils.get_file('kandinsky5.jpg','https://storage.googleapis.com/download.tensorflow.org/example_images/Vassily_Kandinsky%2C_1913_-_Composition_7.jpg')
 
     # Load content and style images (see example in the attached colab).
     content_image = plt.imread(content_path)
