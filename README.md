@@ -26,6 +26,12 @@ Curating the images, processing the images differently and improving the text em
 We only trained the model for 20 epochs on 64x64 images.
 Increasing training time and increasing image size will improve the model further.
 
+## Some Generated Images
+### Monet Green Garden
+![plot](./static/Monet.png)
+### Red Portrait
+![plot](./static/Red%20Protrait.png)
+
 ## Authors
 The labrats: Eduardo V, Mikkel S, Muratzhan K, Tutku K, Vaishnav D
 
